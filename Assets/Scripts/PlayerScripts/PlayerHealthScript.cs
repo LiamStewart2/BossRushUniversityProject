@@ -6,9 +6,12 @@ public class PlayerHealthScript : MonoBehaviour
     [SerializeField] private int m_maxPlayerHealth;
     [SerializeField] private int m_currentHealth;
 
+    private DamageFlash m_flash;
+
     private void Awake()
     {
         m_currentHealth = m_maxPlayerHealth;
+        m_flash = GetComponent<DamageFlash>();
     }
 
     public void TakeDamage(int damage)
@@ -17,6 +20,8 @@ public class PlayerHealthScript : MonoBehaviour
         UpdatePlayerHealthbar();
         if (m_currentHealth <= 0)
             Death();
+        else
+            m_flash.Flash();
     }
 
     private void UpdatePlayerHealthbar()

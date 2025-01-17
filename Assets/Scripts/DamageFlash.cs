@@ -14,6 +14,7 @@ public class DamageFlash : MonoBehaviour
     private void Awake()
     {
         m_flashMaterial = GetComponent<SpriteRenderer>().material;
+        m_flashMaterial.color = m_flashColor;
     }
 
     public void Flash()
