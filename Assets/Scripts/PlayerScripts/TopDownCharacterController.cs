@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class TopDownCharacterController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class TopDownCharacterController : MonoBehaviour
     private InputAction m_moveAction;
     private InputAction m_attackAction;
     private InputAction m_JumpAction;
+    private InputAction m_PauseAction;
 
     private Animator m_animator;
     private Rigidbody2D m_rigidbody;
@@ -34,7 +36,8 @@ public class TopDownCharacterController : MonoBehaviour
         m_moveAction = InputSystem.actions.FindAction("Move");
         m_attackAction = InputSystem.actions.FindAction("Attack");
         m_JumpAction = InputSystem.actions.FindAction("Jump");
-        
+        m_PauseAction = InputSystem.actions.FindAction("Pause");
+
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -72,6 +75,9 @@ public class TopDownCharacterController : MonoBehaviour
     {
         if (GameManager.instance.m_gameOver == false)
         {
+            if(m_PauseAction.IsPressed())
+                GameManager.instance.PauseGame();
+
             m_playerDirection = m_moveAction.ReadValue<Vector2>();
 
             if (rolling == false)

@@ -3,12 +3,27 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_deathScreen;
+    [SerializeField] private GameObject m_pauseMenu;
 
     public static GameManager instance;
 
     public Transform m_player;
     public HealthbarScript m_healthbarScript;
     public bool m_gameOver = false;
+    public bool m_paused = false;
+
+    public void PauseGame()
+    {
+        m_pauseMenu.SetActive(true);
+        m_paused = true;
+        Time.timeScale = 0.0f;
+    }
+    public void ContinueGame()
+    {
+        m_pauseMenu.SetActive(false);
+        m_paused = false;
+        Time.timeScale = 1.0f;
+    }
 
 
     public void LostGame()

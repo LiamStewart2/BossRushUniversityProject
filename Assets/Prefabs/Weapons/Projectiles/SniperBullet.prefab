@@ -167,4 +167,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletSpeed: 1200
   m_bulletDamage: 5
-  m_piercing: 2

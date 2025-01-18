@@ -391,6 +391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scale: 1.1
   hoverSFX: {fileID: 8300000, guid: 3e8a892ab9f28d845b6c7add63fbd1b4, type: 3}
+  m_changeColourOnHover: 0
+  m_hoverColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!82 &150433880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1310,6 +1312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scale: 1.1
   hoverSFX: {fileID: 8300000, guid: 3e8a892ab9f28d845b6c7add63fbd1b4, type: 3}
+  m_changeColourOnHover: 0
+  m_hoverColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &1599724490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1771,6 +1775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scale: 1.1
   hoverSFX: {fileID: 8300000, guid: 3e8a892ab9f28d845b6c7add63fbd1b4, type: 3}
+  m_changeColourOnHover: 0
+  m_hoverColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &1852372813
 CanvasRenderer:
   m_ObjectHideFlags: 0

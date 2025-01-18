@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour
 
         updateHealthbar();
 
-        if(m_currentHealth < 0)
+        if(m_currentHealth <= 0)
         {
             m_currentHealth = 0;
             GameManager.instance.m_healthbarScript.Disable();
