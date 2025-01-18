@@ -20,9 +20,12 @@ public class GunScript : MonoBehaviour
 
     public void Update()
     {
-        FaceMouse();
-        if (m_timer > 0.0f)
-            m_timer -= Time.deltaTime;
+        if (GameManager.instance.m_gameOver == false)
+        {
+            FaceMouse();
+            if (m_timer > 0.0f)
+                m_timer -= Time.deltaTime;
+        }
     }
 
     public GameObject getSprite()
@@ -44,7 +47,7 @@ public class GunScript : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if(mousePosition.x < GameManager.instance.player.position.x)
+        if(mousePosition.x < GameManager.instance.m_player.position.x)
         {
             m_sprite.localPosition = new Vector2(-m_gunSpritePosition.x, m_sprite.localPosition.y);
             m_sprite.localScale = new Vector2(m_gunSpriteScale.x, -m_gunSpriteScale.y);

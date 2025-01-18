@@ -26,13 +26,13 @@ public class EnemyScript : MonoBehaviour
         if(m_currentHealth < 0)
         {
             m_currentHealth = 0;
-            GameManager.instance.healthbarScript.Disable();
+            GameManager.instance.m_healthbarScript.Disable();
             Destroy(gameObject);
         }
     }
     public virtual void updateHealthbar()
     {
         float percentage = (float)m_currentHealth / (float)m_maxHealth;
-        GameManager.instance.healthbarScript.SetHealthByPercentage(percentage);
+        GameManager.instance.m_healthbarScript.SetHealthByPercentage(percentage);
     }
 }

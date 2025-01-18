@@ -33,5 +33,6 @@ public class PlayerHealthScript : MonoBehaviour
     private void Death()
     {
         m_currentHealth = 0;
+        GameManager.instance.LostGame();
     }
 }

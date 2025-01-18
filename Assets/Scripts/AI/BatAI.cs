@@ -20,7 +20,7 @@ public class BatAI : EnemyScript
     private void FixedUpdate()
     {
         Vector3 cv = Vector3.zero;
-        Vector3 targetVelocity = (GameManager.instance.player.position - transform.position).normalized * m_speed * Time.deltaTime;
+        Vector3 targetVelocity = (GameManager.instance.m_player.position - transform.position).normalized * m_speed * Time.deltaTime;
         rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref cv, m_acceleration);
 
         if (rb.linearVelocityX > 0)
@@ -34,7 +34,7 @@ public class BatAI : EnemyScript
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerHealthScript>().TakeDamage(m_damage);
-            rb.AddForce(-(GameManager.instance.player.position - transform.position) * m_bumpForce);
+            rb.AddForce(-(GameManager.instance.m_player.position - transform.position) * m_bumpForce);
         }
     }
 }

@@ -46,44 +46,57 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rolling == false)
+        if (GameManager.instance.m_gameOver == false)
         {
-            float speed = m_playerSpeed > m_playerMaxSpeed ? m_playerMaxSpeed : m_playerSpeed;
+            if (rolling == false)
+            {
+                float speed = m_playerSpeed > m_playerMaxSpeed ? m_playerMaxSpeed : m_playerSpeed;
 
-            m_rigidbody.linearVelocity = m_playerDirection * (speed * Time.fixedDeltaTime);
+                m_rigidbody.linearVelocity = m_playerDirection * (speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                m_rigidbody.linearVelocity = m_playerRollDirection * (m_rollSpeed * Time.fixedDeltaTime);
+            }
         }
         else
         {
-            m_rigidbody.linearVelocity = m_playerRollDirection * (m_rollSpeed * Time.fixedDeltaTime);
+            if(m_rigidbody != null)
+            {
+                Destroy(m_rigidbody); m_rigidbody = null;
+            }
         }
     }
     
     void Update()
     {
-        m_playerDirection = m_moveAction.ReadValue<Vector2>();
-        
-        if(rolling == false)
-            m_animator.SetFloat("Speed", m_playerDirection.magnitude);
-
-        if (m_JumpAction.triggered && rolling == false)
-        { 
-            m_animator.SetBool("Rolling", true);
-            m_playerRollDirection = m_playerDirection;
-            rolling = true;
-
-            m_animator.SetFloat("Speed", m_playerDirection.magnitude);
-            StartCoroutine(Rolling());
-        }
-
-        if (m_playerDirection.magnitude > 0 && rolling == false)
+        if (GameManager.instance.m_gameOver == false)
         {
-            m_animator.SetFloat("Horizontal", m_playerDirection.x);
-            m_animator.SetFloat("Vertical", m_playerDirection.y);
-        }
+            m_playerDirection = m_moveAction.ReadValue<Vector2>();
 
-        if (m_attackAction.IsPressed())
-        {
-            m_gunManager.Shoot();
+            if (rolling == false)
+                m_animator.SetFloat("Speed", m_playerDirection.magnitude);
+
+            if (m_JumpAction.triggered && rolling == false)
+            {
+                m_animator.SetBool("Rolling", true);
+                m_playerRollDirection = m_playerDirection;
+                rolling = true;
+
+                m_animator.SetFloat("Speed", m_playerDirection.magnitude);
+                StartCoroutine(Rolling());
+            }
+
+            if (m_playerDirection.magnitude > 0 && rolling == false)
+            {
+                m_animator.SetFloat("Horizontal", m_playerDirection.x);
+                m_animator.SetFloat("Vertical", m_playerDirection.y);
+            }
+
+            if (m_attackAction.IsPressed())
+            {
+                m_gunManager.Shoot();
+            }
         }
     }
 
