@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public GameObject m_interactUI;
     public Transform m_player;
     public HealthbarScript m_healthbarScript;
     public bool m_gameOver = false;

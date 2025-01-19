@@ -23,10 +23,13 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyScript>().takeDamage(m_bulletDamage);
+
             Destroy(gameObject);
         }
+        else if(collision.gameObject.tag == "BlockProjectile")
+            Destroy(gameObject);
     }
 }

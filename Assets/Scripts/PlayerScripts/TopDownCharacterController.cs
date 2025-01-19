@@ -10,6 +10,7 @@ public class TopDownCharacterController : MonoBehaviour
     private InputAction m_attackAction;
     private InputAction m_JumpAction;
     private InputAction m_PauseAction;
+    private InputAction m_InteractAction;
 
     private Animator m_animator;
     private Rigidbody2D m_rigidbody;
@@ -18,6 +19,8 @@ public class TopDownCharacterController : MonoBehaviour
    
     private Vector2 m_playerRollDirection;
     private bool rolling = false;
+
+    private InteractableComponent m_interactable;
 
     [Header("Movement parameters")]
     [SerializeField] private float m_playerSpeed = 200f;
@@ -37,6 +40,7 @@ public class TopDownCharacterController : MonoBehaviour
         m_attackAction = InputSystem.actions.FindAction("Attack");
         m_JumpAction = InputSystem.actions.FindAction("Jump");
         m_PauseAction = InputSystem.actions.FindAction("Pause");
+        m_InteractAction = InputSystem.actions.FindAction("Interact");
 
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -103,6 +107,13 @@ public class TopDownCharacterController : MonoBehaviour
             {
                 m_gunManager.Shoot();
             }
+
+            if (m_interactable != null && m_InteractAction.IsPressed() && m_interactable.Interected() == false)
+            {
+                m_interactable.Interact();
+                m_interactable = null;
+                GameManager.instance.m_interactUI.SetActive(false);
+            }
         }
     }
 
@@ -111,5 +122,26 @@ public class TopDownCharacterController : MonoBehaviour
         yield return new WaitForSeconds(m_rollDuration);
         m_animator.SetBool("Rolling", false);
         rolling = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interactable")
+        {
+            m_interactable = collision.gameObject.GetComponent<InteractableComponent>();
+            if(m_interactable != null && m_interactable.Interected() == false)
+            {
+                GameManager.instance.m_interactUI.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+       if(collision.gameObject.tag == "Interactable")
+        {
+            m_interactable = null;
+            GameManager.instance.m_interactUI.SetActive(false);
+        }
     }
 }

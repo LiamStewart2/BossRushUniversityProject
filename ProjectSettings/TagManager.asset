@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - BlockProjectile
+  - Interactable
+  - CurrentGun
   layers:
   - Default
   - TransparentFX

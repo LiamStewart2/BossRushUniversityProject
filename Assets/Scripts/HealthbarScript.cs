@@ -7,6 +7,7 @@ public class HealthbarScript : MonoBehaviour
 
     public void SetHealthByPercentage(float percentage)
     {
+        gameObject.SetActive(true);
         m_slider.value = Mathf.Min(Mathf.Max(0, percentage), 1);
     }
 
