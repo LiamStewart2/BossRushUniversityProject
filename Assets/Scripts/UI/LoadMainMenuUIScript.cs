@@ -7,6 +7,7 @@ public class LoadMainMenuUIScript : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        GameObject.FindGameObjectWithTag("CurrentGun").GetComponent<CurrentGunHolder>().m_gun = null;
         SceneManager.LoadScene(m_mainMenuString);
         Time.timeScale = 1.0f;
     }

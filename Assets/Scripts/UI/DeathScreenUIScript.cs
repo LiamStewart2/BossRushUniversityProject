@@ -12,6 +12,7 @@ public class DeathScreenUIScript : MonoBehaviour
     }
     public void LoadMainMenu()
     {
+        GameObject.FindGameObjectWithTag("CurrentGun").GetComponent<CurrentGunHolder>().m_gun = null;
         SceneManager.LoadScene(m_mainMenuName);
     }
 }
