@@ -96,7 +96,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4291374469299259513, guid: e78de41caf9a4c446a2880cad7bab3bf, type: 3}
       propertyPath: m_Name
-      value: atlas_walls_high-16x32_95 Variant
+      value: PillarTorch
       objectReference: {fileID: 0}
     - target: {fileID: 6252019943804446642, guid: e78de41caf9a4c446a2880cad7bab3bf, type: 3}
       propertyPath: m_LocalPosition.x

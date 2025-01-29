@@ -56,7 +56,6 @@ MonoBehaviour:
   m_rollDuration: 0.4
   m_rollSpeed: 400
   m_gunManager: {fileID: 3297426360950869189}
-  m_collider: {fileID: 7601808942560731583}
 --- !u!114 &2955285675911216536
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35344,6 +35344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 945463362}
     m_Modifications:
+    - target: {fileID: 1776913743228223329, guid: d59e06b27e347c941ade17296b7e009b, type: 3}
+      propertyPath: 'm_weaponPool.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1937462456691315454, guid: 31197414fe3ccd542bed766b71735bcb, type: 3}
     - target: {fileID: 8002553212383021816, guid: d59e06b27e347c941ade17296b7e009b, type: 3}
       propertyPath: m_Name
       value: ChestWeaponPickup
