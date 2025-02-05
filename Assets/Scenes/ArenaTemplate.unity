@@ -69326,9 +69326,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1825497656}
   - component: {fileID: 1825497657}
+  - component: {fileID: 1825497658}
+  - component: {fileID: 1825497659}
+  - component: {fileID: 1825497660}
   m_Layer: 0
   m_Name: CryogenShield_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69379,7 +69382,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: af1fbee3e80e73f4593279eb0eb7d40b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69411,6 +69414,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1825497658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825497655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5abac26e2b6b664aad1b37ee367af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealth: 20
+  m_isBoss: 0
+  m_IsShieldUp: 1
+--- !u!58 &1825497659
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825497655}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.8
+--- !u!114 &1825497660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825497655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d040307e88089814298a9288965156f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_flashColor: {r: 1, g: 1, b: 1, a: 1}
+  m_flashTime: 0.2
 --- !u!1001 &1865833767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70329,7 +70397,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 7353995096466d4418e20d157ac03f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70369,7 +70437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954030083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.27, y: 18.89, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
@@ -70389,8 +70457,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c31253bb0f36fe4dbab5949866ef525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 10
-  m_damage: 0
+  m_maxHealth: 50
+  m_isBoss: 1
+  m_damage: 3
+  m_ChargeDamage: 5
+  m_FirstPhaseShieldRegenTime: 20
+  m_FirstPhaseShootRate: 3
+  m_FirstPhaseOffsetPosition: {x: 0, y: 4, z: 0}
+  m_SecondPhaseChargeTime: 10
+  m_SecondPhaseChargeAttackRate: 0.5
+  m_SecondPhaseChargeVelocity: 600
+  m_ThirdPhaseShootRate: 2
+  m_ThirdPhaseChargeTime: 5
+  m_shield: {fileID: 1825497658}
   m_4_projectiles:
   - {fileID: 898965124}
   - {fileID: 1325070488}

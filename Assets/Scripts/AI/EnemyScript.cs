@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     [Header("Enemy Attributes")]
     [SerializeField] protected int m_maxHealth;
+    [SerializeField] protected bool m_isBoss;
 
     protected int m_currentHealth;
     private DamageFlash m_flash;
@@ -21,15 +22,21 @@ public class EnemyScript : MonoBehaviour
         m_currentHealth -= damage;
         m_flash.Flash();
 
-        updateHealthbar();
+        if(m_isBoss)
+            updateHealthbar();
 
-        if(m_currentHealth <= 0)
-        {
-            m_currentHealth = 0;
-            GameManager.instance.m_healthbarScript.Disable();
-            Destroy(gameObject);
-        }
+        if (m_currentHealth <= 0)
+            Die();
     }
+
+    public virtual void Die()
+    {
+        m_currentHealth = 0;
+        if (m_isBoss)
+            GameManager.instance.m_healthbarScript.Disable();
+        Destroy(gameObject);
+    }
+
     public virtual void updateHealthbar()
     {
         float percentage = (float)m_currentHealth / (float)m_maxHealth;
