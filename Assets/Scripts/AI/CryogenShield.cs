@@ -15,6 +15,7 @@ public class CryogenShield : EnemyScript
         {
             m_IsShieldUp = true;
             gameObject.SetActive(true);
+            m_currentHealth = m_maxHealth;
         }
         
     }
@@ -22,7 +23,7 @@ public class CryogenShield : EnemyScript
     private void BreakShield()
     {
         if(m_IsShieldUp)
-        { 
+        {
             m_IsShieldUp = false;
             gameObject.SetActive(false);
         }

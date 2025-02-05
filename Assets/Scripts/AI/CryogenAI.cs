@@ -23,11 +23,6 @@ public class CryogenAI : EnemyScript
 
     [Header("AI Requirements")]
     [SerializeField] CryogenShield m_shield;
-
-
-    [Header("Projectile Spawn Points")]
-    [SerializeField] private Transform[] m_4_projectiles;
-    [SerializeField] private Transform[] m_8_projectiles;
     [SerializeField] private GameObject m_projectile;
 
     private NavMeshAgent m_agent;
@@ -57,6 +52,23 @@ public class CryogenAI : EnemyScript
         m_ShieldTimer = m_FirstPhaseShieldRegenTime;
     }
 
+    public override void takeDamage(int damage)
+    {
+        base.takeDamage(damage);
+
+        switch(m_phase)
+        {
+            case PHASE.PHASE1:
+                if (m_currentHealth < m_maxHealth * 0.7)
+                    m_phase = PHASE.PHASE2;
+                break;
+
+            case PHASE.PHASE2:
+                if (m_currentHealth < m_maxHealth * 0.35)
+                    m_phase = PHASE.PHASE3;
+                break;
+        }
+    }
 
     private void Update()
     {
@@ -91,12 +103,12 @@ public class CryogenAI : EnemyScript
 
         m_AttackTimer -= Time.deltaTime;
 
-        if(m_shield.m_IsShieldUp)
+        if(m_shield.m_IsShieldUp == false)
             m_ShieldTimer -= Time.deltaTime;
 
         if(m_AttackTimer <= 0.0f)
         {
-            Spawn8Projectiles();
+            SpawnProjectiles(16);
             m_AttackTimer = m_FirstPhaseShootRate;
         }
 
@@ -130,17 +142,13 @@ public class CryogenAI : EnemyScript
 
     }
 
-    // Projectile Spawns
-    private void Spawn4Projectiles()
+    private void SpawnProjectiles(int n)
     {
-        for (int i = 0; i < m_4_projectiles.Length; i++)
-            Instantiate(m_projectile, m_4_projectiles[i].position, m_4_projectiles[i].rotation, null);
-    }
-
-    private void Spawn8Projectiles()
-    {
-        for (int i = 0; i < m_8_projectiles.Length; i++)
-            Instantiate(m_projectile, m_8_projectiles[i].position, m_8_projectiles[i].rotation, null);
+        for(int i = 0; i < n; i++)
+        {
+            Quaternion rotation = Quaternion.Euler(0, 0, 360 / n * i);
+            Instantiate(m_projectile, transform.position, rotation, null);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

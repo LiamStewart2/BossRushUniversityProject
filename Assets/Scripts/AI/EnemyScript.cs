@@ -42,4 +42,9 @@ public class EnemyScript : MonoBehaviour
         float percentage = (float)m_currentHealth / (float)m_maxHealth;
         GameManager.instance.m_healthbarScript.SetHealthByPercentage(percentage);
     }
+
+    public void OnEnable()
+    {
+        m_flash.Flash();
+    }
 }
