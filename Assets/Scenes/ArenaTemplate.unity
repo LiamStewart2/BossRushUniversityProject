@@ -1988,7 +1988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106556305}
   - component: {fileID: 1106556306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CryogenLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50876,7 +50876,7 @@ RectTransform:
   m_Father: {fileID: 132188197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -36}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -69165,7 +69165,7 @@ GameObject:
   - component: {fileID: 1825497658}
   - component: {fileID: 1825497659}
   - component: {fileID: 1825497660}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CryogenShield_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -70118,7 +70118,7 @@ GameObject:
   - component: {fileID: 1954030084}
   - component: {fileID: 1954030091}
   - component: {fileID: 1954030092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cryogen
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -70286,21 +70286,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c31253bb0f36fe4dbab5949866ef525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 50
+  m_maxHealth: 400
   m_isBoss: 1
   m_damage: 3
-  m_ChargeDamage: 5
-  m_FirstPhaseShieldRegenTime: 20
-  m_FirstPhaseShootRate: 3
+  m_ChargeDamage: 2
+  m_FirstPhaseShieldRegenTime: 15
+  m_FirstPhaseShootRate: 2.5
   m_FirstPhaseOffsetPosition: {x: 0, y: 4, z: 0}
   m_SecondPhaseChargeTime: 10
   m_SecondPhaseChargeDuration: 1
   m_SecondPhaseChargeAttackRate: 0.25
-  m_SecondPhaseChargeVelocity: 18
-  m_ThirdPhaseShootRate: 2
+  m_SecondPhaseChargeVelocity: 15
+  m_ThirdPhaseShootRate: 1.5
   m_ThirdPhaseChargeTime: 5
   m_shield: {fileID: 1825497658}
   m_projectile: {fileID: 6987831695752516020, guid: 39d64a68547c9f14ba5dbe7230998adb, type: 3}
+  m_SpriteRenderer: {fileID: 1954030088}
+  m_FirstPhaseSprite: {fileID: -668358800630575327, guid: a32ab37cda575fa47a2a15ae9f799d05, type: 3}
+  m_SecondPhaseSprite: {fileID: 223159877756116087, guid: 799640ec799bdee469379a2750ed1c09, type: 3}
+  m_ThirdPhaseSprite: {fileID: 1807249656157777574, guid: 922785ae98ffe9e4794fe8969b359e65, type: 3}
 --- !u!195 &1954030091
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -71237,7 +71241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2066053096
 MonoBehaviour:
   m_ObjectHideFlags: 0

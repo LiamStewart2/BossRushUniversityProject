@@ -26,6 +26,12 @@ public class CryogenAI : EnemyScript
     [SerializeField] CryogenShield m_shield;
     [SerializeField] private GameObject m_projectile;
 
+    [Header("Sprites")]
+    [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private Sprite m_FirstPhaseSprite;
+    [SerializeField] private Sprite m_SecondPhaseSprite;
+    [SerializeField] private Sprite m_ThirdPhaseSprite;
+
     private Rigidbody2D m_rigidbody;
     private NavMeshAgent m_agent;
     private PHASE m_phase = PHASE.PHASE1;
@@ -50,6 +56,7 @@ public class CryogenAI : EnemyScript
         m_agent.updateUpAxis = false;
 
         m_rigidbody = GetComponent<Rigidbody2D>();
+        m_SpriteRenderer.sprite = m_FirstPhaseSprite;
 
         m_AttackTimer = m_FirstPhaseShootRate;
         m_ShieldTimer = m_FirstPhaseShieldRegenTime;
@@ -60,16 +67,22 @@ public class CryogenAI : EnemyScript
     {
         base.takeDamage(damage);
 
-        switch(m_phase)
+        switch (m_phase)
         {
             case PHASE.PHASE1:
                 if (m_currentHealth < m_maxHealth * 0.7)
+                {
                     m_phase = PHASE.PHASE2;
+                    m_SpriteRenderer.sprite = m_SecondPhaseSprite;
+                }
                 break;
 
             case PHASE.PHASE2:
                 if (m_currentHealth < m_maxHealth * 0.35)
+                {
                     m_phase = PHASE.PHASE3;
+                    m_SpriteRenderer.sprite = m_ThirdPhaseSprite;
+                }
                 break;
         }
     }
@@ -132,7 +145,8 @@ public class CryogenAI : EnemyScript
             if(m_chargingTimer <= 0.0f)
                 m_charging = false;
 
-            m_rigidbody.linearVelocity = m_chargeDirection * m_SecondPhaseChargeVelocity;
+            else
+                m_rigidbody.linearVelocity = m_chargeDirection * m_SecondPhaseChargeVelocity;
         }
 
         else
@@ -167,7 +181,45 @@ public class CryogenAI : EnemyScript
 
     private void Phase3()
     {
+        if (m_charging)
+        {
+            m_chargingTimer -= Time.deltaTime;
 
+            if (m_chargingTimer <= 0.0f)
+                m_charging = false;
+
+            else 
+                m_rigidbody.linearVelocity = m_chargeDirection * m_SecondPhaseChargeVelocity;
+        }
+
+        else
+        {
+            Idle();
+
+            m_AttackTimer -= Time.deltaTime;
+            m_ChargeTimer -= Time.deltaTime;
+
+            if (m_shield.m_IsShieldUp == false)
+                m_ShieldTimer -= Time.deltaTime;
+
+            if (m_AttackTimer <= 0.0f)
+            {
+                SpawnProjectiles(16);
+                m_AttackTimer = m_ThirdPhaseShootRate;
+            }
+
+            if (m_ShieldTimer <= 0.0f)
+            {
+                m_shield.RespawnShield();
+                m_ShieldTimer = m_FirstPhaseShieldRegenTime;
+            }
+
+            if (m_ChargeTimer <= 0.0f)
+            {
+                Charge();
+                m_ChargeTimer = m_ThirdPhaseChargeTime;
+            }
+        }
     }
 
     private void Idle()
@@ -198,7 +250,10 @@ public class CryogenAI : EnemyScript
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealthScript>().TakeDamage(m_damage);
+            if(m_charging)
+                collision.gameObject.GetComponent<PlayerHealthScript>().TakeDamage(m_ChargeDamage);
+            else
+                collision.gameObject.GetComponent<PlayerHealthScript>().TakeDamage(m_damage);
         }
     }
 }
