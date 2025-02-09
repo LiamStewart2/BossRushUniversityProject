@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class CryogenAI : EnemyScript
 {
     [Header("AI Attributes")]
+    [SerializeField] private float m_movementSpeed;
     [SerializeField] private int m_damage;
     [SerializeField] private int m_ChargeDamage;
 
@@ -32,15 +33,17 @@ public class CryogenAI : EnemyScript
     [SerializeField] private Sprite m_SecondPhaseSprite;
     [SerializeField] private Sprite m_ThirdPhaseSprite;
 
+    [Header("Effects")]
+    [SerializeField] private GameObject m_CryogenHitParticle;
+
     private Rigidbody2D m_rigidbody;
-    private NavMeshAgent m_agent;
     private PHASE m_phase = PHASE.PHASE1;
 
     private float m_AttackTimer = 0.0f;
     private float m_ShieldTimer = 0.0f;
     private float m_ChargeTimer = 0.0f;
 
-    private bool m_charging = true;
+    private bool m_charging = false;
     private Vector2 m_chargeDirection = Vector2.zero;
     private float m_chargingTimer = 0.0f;
     
@@ -51,9 +54,6 @@ public class CryogenAI : EnemyScript
 
     private void Start()
     {
-        m_agent = GetComponent<NavMeshAgent>();
-        m_agent.updateRotation = false;
-        m_agent.updateUpAxis = false;
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_SpriteRenderer.sprite = m_FirstPhaseSprite;
@@ -66,6 +66,8 @@ public class CryogenAI : EnemyScript
     public override void takeDamage(int damage)
     {
         base.takeDamage(damage);
+
+        Instantiate(m_CryogenHitParticle, transform.position, transform.rotation, null);
 
         switch (m_phase)
         {
@@ -113,11 +115,14 @@ public class CryogenAI : EnemyScript
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (m_charging == false)
+            MoveTowardsPlayer();
+    }
 
     private void Phase1()
     {
-        Idle();
-
         m_AttackTimer -= Time.deltaTime;
 
         if(m_shield.m_IsShieldUp == false)
@@ -151,8 +156,6 @@ public class CryogenAI : EnemyScript
 
         else
         {
-            Idle();
-
             m_AttackTimer -= Time.deltaTime;
             m_ChargeTimer -= Time.deltaTime;
 
@@ -194,8 +197,6 @@ public class CryogenAI : EnemyScript
 
         else
         {
-            Idle();
-
             m_AttackTimer -= Time.deltaTime;
             m_ChargeTimer -= Time.deltaTime;
 
@@ -222,9 +223,9 @@ public class CryogenAI : EnemyScript
         }
     }
 
-    private void Idle()
+    private void MoveTowardsPlayer()
     {
-        m_agent.SetDestination(GameManager.instance.m_player.position + m_FirstPhaseOffsetPosition);
+        m_rigidbody.linearVelocity = ((GameManager.instance.m_player.position + m_FirstPhaseOffsetPosition) - transform.position) * m_movementSpeed;
     }
 
     private void Charge()

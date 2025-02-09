@@ -50949,7 +50949,6 @@ Transform:
   m_Children:
   - {fileID: 2116292328}
   - {fileID: 894989881}
-  - {fileID: 2126512917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387879793
@@ -70116,7 +70115,6 @@ GameObject:
   - component: {fileID: 1954030090}
   - component: {fileID: 1954030085}
   - component: {fileID: 1954030084}
-  - component: {fileID: 1954030091}
   - component: {fileID: 1954030092}
   m_Layer: 6
   m_Name: Cryogen
@@ -70288,6 +70286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 400
   m_isBoss: 1
+  m_movementSpeed: 0.5
   m_damage: 3
   m_ChargeDamage: 2
   m_FirstPhaseShieldRegenTime: 15
@@ -70305,28 +70304,7 @@ MonoBehaviour:
   m_FirstPhaseSprite: {fileID: -668358800630575327, guid: a32ab37cda575fa47a2a15ae9f799d05, type: 3}
   m_SecondPhaseSprite: {fileID: 223159877756116087, guid: 799640ec799bdee469379a2750ed1c09, type: 3}
   m_ThirdPhaseSprite: {fileID: 1807249656157777574, guid: 922785ae98ffe9e4794fe8969b359e65, type: 3}
---- !u!195 &1954030091
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954030083}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.45
-  m_Speed: 3
-  m_Acceleration: 6
-  avoidancePriority: 50
-  m_AngularSpeed: 360
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.9
-  m_BaseOffset: 0.44
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_CryogenHitParticle: {fileID: 1286657007715383210, guid: a6594bf1da102cc42ba65b516305aa00, type: 3}
 --- !u!95 &1954030092
 Animator:
   serializedVersion: 7
@@ -71379,86 +71357,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!1 &2126512916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2126512917}
-  - component: {fileID: 2126512919}
-  - component: {fileID: 2126512918}
-  m_Layer: 0
-  m_Name: NavMesh Surface
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2126512917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126512916}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1350106582}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2126512918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126512916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd44a44cd62c64fbfc1eea95b24880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideByGrid: 0
-  m_UseMeshPrefab: {fileID: 0}
-  m_CompressBounds: 0
-  m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!114 &2126512919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126512916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
-  m_MinRegionArea: 0
-  m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 48b78c3128d10be428478f42448d4ada, type: 2}
 --- !u!1001 &8176299781156708138
 PrefabInstance:
   m_ObjectHideFlags: 0
