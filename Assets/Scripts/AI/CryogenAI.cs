@@ -35,6 +35,7 @@ public class CryogenAI : EnemyScript
 
     [Header("Effects")]
     [SerializeField] private GameObject m_CryogenHitParticle;
+    [SerializeField] private AudioSource[] m_HitSounds;
 
     private Rigidbody2D m_rigidbody;
     private PHASE m_phase = PHASE.PHASE1;
@@ -68,6 +69,9 @@ public class CryogenAI : EnemyScript
         base.takeDamage(damage);
 
         Instantiate(m_CryogenHitParticle, transform.position, transform.rotation, null);
+
+        int hitSoundIndex = Random.Range(0, m_HitSounds.Length);
+        m_HitSounds[hitSoundIndex].Play();
 
         switch (m_phase)
         {
