@@ -140,17 +140,18 @@ public class CryogenAI : EnemyScript
         if(m_shield.m_IsShieldUp == false)
             m_ShieldTimer -= Time.deltaTime;
 
+        
         if(m_AttackTimer <= 0.0f)
         {
             SpawnProjectiles(16);
             m_AttackTimer = m_FirstPhaseShootRate;
         }
-
+        
         if (m_ShieldTimer <= 0.0f)
         {
             m_shield.RespawnShield();
             m_ShieldTimer = m_FirstPhaseShieldRegenTime;
-        }
+        } 
     }
 
     private void Phase2()
