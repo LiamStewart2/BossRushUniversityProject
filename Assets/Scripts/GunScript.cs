@@ -3,6 +3,7 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     [SerializeField] private GameObject m_projectile;
+    [SerializeField] private AudioSource m_fireSound;
     [SerializeField] private Transform m_barrelPosition;
     [SerializeField] private Transform m_sprite;
     [SerializeField] private float m_firerate;
@@ -39,7 +40,8 @@ public class GunScript : MonoBehaviour
         {
             Quaternion bulletSpreadRotation = Quaternion.Euler(0, 0, m_barrelPosition.rotation.eulerAngles.z + Random.Range(-m_bulletSpread, m_bulletSpread));
             Instantiate(m_projectile, m_barrelPosition.position, bulletSpreadRotation, null);
-            m_timer = 1.0f / m_firerate; 
+            m_timer = 1.0f / m_firerate;
+            m_fireSound.Play();
         }
     }
 
