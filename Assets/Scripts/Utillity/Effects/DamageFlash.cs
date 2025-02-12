@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Flashes the objects material when triggered using the custom Shader - flash shader
+/// </summary>
+
 public class DamageFlash : MonoBehaviour
 {
     [ColorUsage(true, true)]

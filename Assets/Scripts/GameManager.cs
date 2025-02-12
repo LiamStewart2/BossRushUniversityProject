@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Game Manager
+/// </summary>
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_deathScreen;

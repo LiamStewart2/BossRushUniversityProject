@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Pickup script for guns, lets the player equip guns from the floor
+/// </summary>
+
 public class GunPickupScript : MonoBehaviour
 {
     [SerializeField] private GameObject m_gun;

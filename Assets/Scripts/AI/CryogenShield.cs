@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Cryogens shield
+/// </summary>
+
 public class CryogenShield : EnemyScript
 {
 

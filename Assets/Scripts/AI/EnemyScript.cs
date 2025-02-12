@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(DamageFlash))]
+/// <summary>
+/// Parent script for all enemies
+/// </summary>
 
+[RequireComponent(typeof(DamageFlash))]
 public class EnemyScript : MonoBehaviour
 {
     [Header("Enemy Attributes")]

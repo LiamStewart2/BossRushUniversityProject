@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the UI Side of the healthbar
+/// </summary>
+
 public class HealthbarScript : MonoBehaviour
 {
     [SerializeField] private Slider m_slider;

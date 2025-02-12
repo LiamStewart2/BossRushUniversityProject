@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using static UnityEngine.Timeline.DirectorControlPlayable;
-using System;
+
+/// <summary>
+/// Character controller
+/// </summary>
 
 public class TopDownCharacterController : MonoBehaviour
 {
@@ -37,6 +39,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void Awake()
     {
+        // Bind the Input Actions
         m_moveAction = InputSystem.actions.FindAction("Move");
         m_attackAction = InputSystem.actions.FindAction("Attack");
         m_JumpAction = InputSystem.actions.FindAction("Jump");
@@ -56,12 +59,14 @@ public class TopDownCharacterController : MonoBehaviour
     {
         if (GameManager.instance.m_gameOver == false)
         {
+            // Movement update
             if (rolling == false)
             {
                 float speed = m_playerSpeed > m_playerMaxSpeed ? m_playerMaxSpeed : m_playerSpeed;
 
                 m_rigidbody.linearVelocity = m_playerDirection * (speed * Time.fixedDeltaTime);
             }
+            // Dash update
             else
             {
                 m_rigidbody.linearVelocity = m_playerRollDirection * (m_rollSpeed * Time.fixedDeltaTime);
@@ -81,11 +86,14 @@ public class TopDownCharacterController : MonoBehaviour
         if (GameManager.instance.m_gameOver)
             return;
 
+        // pause the game when the pause action is triggered 
         if (m_PauseAction.triggered)
             GameManager.instance.PauseGame();
 
+        // gets the WASD direction vector
         m_playerDirection = m_moveAction.ReadValue<Vector2>();
 
+        //updates the aniamitor if rolling
         if (rolling == false)
         {
             m_animator.SetFloat("Speed", m_playerDirection.magnitude);
@@ -93,6 +101,7 @@ public class TopDownCharacterController : MonoBehaviour
             m_animator.SetFloat("Vertical", m_playerDirection.y);
         }
 
+        // handles the interact objects nearby
         if (m_interactable != null && m_InteractAction.IsPressed() && m_interactable.Interected() == false)
         {
             m_interactable.Interact();
@@ -102,6 +111,7 @@ public class TopDownCharacterController : MonoBehaviour
 
         if (rolling) return;
 
+        // roll when the roll action is triggered 
         if (m_JumpAction.triggered && m_playerDirection.magnitude != 0)
         {
             m_playerRollDirection = m_playerDirection;
@@ -111,12 +121,14 @@ public class TopDownCharacterController : MonoBehaviour
             StartCoroutine(Rolling());
         }
 
+        //shoot the gun currently held
         if(m_attackAction.IsPressed())
         {
             m_gunManager.Shoot();
         }
     }
 
+    // sets the values in the animator for rolling
     IEnumerator Rolling()
     {
         rolling = true;
@@ -132,6 +144,7 @@ public class TopDownCharacterController : MonoBehaviour
         m_animator.SetFloat("Vertical", m_playerDirection.y);
     }
 
+    // detects when in range of an interactable object
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Interactable")
@@ -144,6 +157,7 @@ public class TopDownCharacterController : MonoBehaviour
         }
     }
 
+    // detects when out of range of an interactable object
     private void OnTriggerExit2D(Collider2D collision)
     {
        if(collision.gameObject.tag == "Interactable")

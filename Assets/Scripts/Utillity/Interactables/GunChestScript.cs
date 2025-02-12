@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Spawns a random gun from the waepon pool when interacted with
+/// </summary>
+
 public class GunChestScript : MonoBehaviour
 {
     [SerializeField] private GameObject[] m_weaponPool;

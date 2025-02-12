@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Simple projectile movement, moves the projectile forward at a constant rate
+/// </summary>
+
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D m_rb;

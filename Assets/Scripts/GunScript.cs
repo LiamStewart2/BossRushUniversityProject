@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// General gun functionality, can handle most basic projectile based guns such as assault rifles, smgs and snipers
+/// </summary>
+
 public class GunScript : MonoBehaviour
 {
     [SerializeField] private GameObject m_projectile;
@@ -34,6 +38,10 @@ public class GunScript : MonoBehaviour
         return m_sprite.gameObject;
     }
 
+    /// <summary>
+    /// Shoots a bullet in the mouses direction
+    /// also applies an offset to the rotation, acting as a simple recoil
+    /// </summary>
     public void Shoot()
     {
         if (m_timer <= 0.0f)
@@ -45,6 +53,9 @@ public class GunScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Faces the mouse, using enter the gungeon styled hand swapping
+    /// </summary>
     private void FaceMouse()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

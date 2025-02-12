@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Bat AI - was purely for testing and probably doesnt work anymore
+/// </summary>
+
 public class BatAI : EnemyScript
 {
     [Header("Bat Attributes")]

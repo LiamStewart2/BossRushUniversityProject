@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Cave Entrance in the opening level
+/// </summary>
+
 public class CaveEntranceScript : MonoBehaviour
 {
     [SerializeField] private string m_firstBossScene;

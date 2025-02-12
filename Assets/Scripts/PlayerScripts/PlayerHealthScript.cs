@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Handles player health
+/// </summary>
+
 public class PlayerHealthScript : MonoBehaviour
 {
     [SerializeField] private HealthbarScript m_playerHealthbar;

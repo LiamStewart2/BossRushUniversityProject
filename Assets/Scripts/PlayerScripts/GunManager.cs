@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Handles the players currently held gun
+/// </summary>
+
 public class GunManager : MonoBehaviour
 {
     private GameObject m_currentEquippedGun;
@@ -13,7 +17,7 @@ public class GunManager : MonoBehaviour
             EquipGun(m_currentGunHolder.m_gun);
     }
 
-
+    // Destroys the last held gun object then equips a new gun
     public void EquipGun(GameObject newGun)
     {
         if (newGun.GetComponent<GunScript>() != null)
@@ -29,6 +33,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    // Just destroyes the last held gun object
     public void UnequipGun()
     {
         Destroy(m_currentEquippedGun);
@@ -37,6 +42,7 @@ public class GunManager : MonoBehaviour
         m_currentGunHolder.m_gun = null;
     }
 
+    // redirects the player controller to the gun script on the currently held gun
     public void Shoot()
     {
         if(m_currentGunScript != null)

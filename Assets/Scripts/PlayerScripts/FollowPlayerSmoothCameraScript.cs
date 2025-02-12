@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Smoothly follow the player
+/// </summary>
+
 public class FollowPlayerSmoothCameraScript : MonoBehaviour
 {
     [SerializeField] private GameObject target;

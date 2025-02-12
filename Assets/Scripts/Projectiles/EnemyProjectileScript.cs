@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Generic enemy projectile script, moves the gameobject forward at a constant rate
+/// </summary>
+
 public class EnemyProjectileScript : MonoBehaviour
 {
     [Header("Projectile settings")]

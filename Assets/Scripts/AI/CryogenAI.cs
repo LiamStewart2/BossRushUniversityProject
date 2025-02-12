@@ -1,8 +1,15 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
+
+/// <summary>
+/// Cryogens AI
+/// 
+/// Has 3 phases: 
+/// - phase 1 - follows players and shoots projectiles in a circle
+/// - phase 2 - follows player, shoots projectiles in a circle and charges towards the player
+/// - phase 3 - same as phase 2 but faster in every way
+/// 
+/// also has a shield which recharges every X seconds depending on the phase
+/// </summary>
 
 public class CryogenAI : EnemyScript
 {
@@ -65,6 +72,7 @@ public class CryogenAI : EnemyScript
         m_ChargeTimer = m_SecondPhaseChargeTime;
     }
 
+    // Custom take damage override for handling updating phases
     public override void takeDamage(int damage)
     {
         base.takeDamage(damage);
@@ -94,6 +102,7 @@ public class CryogenAI : EnemyScript
         }
     }
 
+    // win the game when the boss dies
     public override void Die()
     {
         GameManager.instance.WonGame();

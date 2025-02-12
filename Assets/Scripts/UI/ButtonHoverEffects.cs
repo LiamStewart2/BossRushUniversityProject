@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Button UI extension, lets me make more interesting hover behaviours 
+/// this includes playing noice, changing the colour easier and changing the scale
+/// </summary>
+
 [RequireComponent(typeof(AudioSource))]
 public class ButtonHoverEffects : MonoBehaviour
 {
