@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_deathScreen;
+    [SerializeField] private GameObject m_winScreen;
     [SerializeField] private GameObject m_pauseMenu;
 
     public static GameManager instance;
@@ -32,6 +33,12 @@ public class GameManager : MonoBehaviour
         m_gameOver = true;
         m_deathScreen.SetActive(true);
     }
+    public void WonGame()
+    {
+        m_gameOver = true;
+        m_winScreen.SetActive(true);
+    }
+
 
     private void Awake()
     {

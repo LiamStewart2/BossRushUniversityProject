@@ -35,6 +35,7 @@ public class CryogenAI : EnemyScript
 
     [Header("Effects")]
     [SerializeField] private GameObject m_CryogenHitParticle;
+    [SerializeField] private GameObject m_CryogenDeathParticle;
     [SerializeField] private AudioSource[] m_HitSounds;
 
     private Rigidbody2D m_rigidbody;
@@ -91,6 +92,13 @@ public class CryogenAI : EnemyScript
                 }
                 break;
         }
+    }
+
+    public override void Die()
+    {
+        GameManager.instance.WonGame();
+        Instantiate(m_CryogenDeathParticle, transform.position, transform.rotation, null);
+        base.Die();
     }
 
     private void Update()
